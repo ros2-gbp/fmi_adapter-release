@@ -1,7 +1,0 @@
-ros-crystal-fmi-adapter-examples (0.1.0-0bionic) bionic; urgency=high
-
-  * Initial version for ROS 2, ported from https://github.com/boschresearch/fmi_adapter/
-
- -- Ralph Lange <ralph.lange@de.bosch.com>  Thu, 17 Jan 2019 23:00:00 -0000
-
-

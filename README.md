@@ -1,50 +1,47 @@
-General information about this repository, including legal information, build instructions and known issues/limitations, are given in [README.md](../README.md) in the repository root.
+# The fmi_adapter_ros2 repository
+
+This repository provides the fmi_adapter package for wrapping *functional mockup units (FMUs)* for co-simulation of physical models into ROS 2 nodes, i.e. for the version ROS 2. The original implementation for the first generation of ROS can be found at [github.com/boschresearch/fmi_adapter](https://github.com/boschresearch/fmi_adapter).
 
 
-# The fmi_adapter_examples package
+FMUs are defined in the [FMI standard](http://fmi-standard.org/) and can be created with a variety of modeling and simulation tools, including [Dymola](http://www.3ds.com/products-services/catia/products/dymola), [MATLAB/Simulink](https://www.mathworks.com/products/simulink.html), [OpenModelica](https://www.openmodelica.org/), [SimulationX](https://www.simulationx.de/), and [Wolfram System Modeler](http://www.wolfram.com/system-modeler/).
 
-This [ROS 2](http://www.ros.org/) package provides few examples for the use of the fmi_adapter package. It contains two FMU files DampedPendulum.fmu and TransportDelay.fmu (both created with the [FMU SDK](https://www.qtronic.de/en/fmusdk.html)) and corresponding launch files. Furthermore, it includes a model of a damped pendulum in the [Modelica language](https://www.modelica.org/) to create your own FMU.
+fmi_adapter provides a library with convenience functions based on common ROS types to load an FMU during runtime, retrieve the input, output, and parameter names, set timestamped input values, run the FMU's numeric solver, and query the resulting output.
 
+In detail, this repository contains two ROS 2 packages:
 
-## Running the provided sample FMUs
+*   [fmi_adapter](fmi_adapter/) provides a generic library and node for loading and running FMUs in ROS-based applications.
+*   [fmi_adapter_examples](fmi_adapter_examples/) provides small examples for the use of fmi_adapter.
 
-Use `ros2 launch fmi_adapter_examples simple_damped_pendulum.launch.py` to simulate a damped pendulum ([share/DampedPendulum.fmu](share/DampedPendulum.fmu)) with a length of 1m. The pendulum's angle is published at topic /a with the default rate of 100Hz. The step size of the FMU's solver is 1ms.
-
-To print the angle data on another console, invoke `ros2 topic echo /a`.
-
-[damped_pendulum_with_transport_delay.launch.py](launch/damped_pendulum_with_transport_delay.launch) starts two nodes named */example/damped_pendulum* and */example/transport_delay*. The first one simulates [share/DampedPendulum.fmu](share/DampedPendulum.fmu), where the length parameter is set to 25m by the launch file. The second node runs [share/TransportDelay.fmu](share/TransportDelay.fmu), where the delay parameter is set to 2.33s. The input subscription of the transport delay is remapped to the pendulum's angle topic and the delayed angle is published at */example/y*.
+Technical information on the interfaces and use of these packages is given in the README.md files in the corresponding subfolders.
 
 
-## Create and simulate your own DampedPendulum.fmu
+## Purpose of the project
 
-There are several modeling tools that support the Modelica language and provide FMU export. Examples are [Dymola](http://www.3ds.com/products-services/catia/products/dymola), [JModelica](https://jmodelica.org/), and [OpenModelica](https://www.openmodelica.org/).
-
-In the following, we explain the process by the example of OpenModelica, which has been also used to create the model of the damped pendulum at [share/DampedPendulum.mo](share/DampedPendulum.mo).
-
-*   Download and install OpenModelica for Linux as described in [https://openmodelica.org/download/download-linux](https://openmodelica.org/download/download-linux).
-*   Launch `OMEdit` and load the [share/DampedPendulum.mo](share/DampedPendulum.mo) model file.
-*   Click on the DampedPendulum model in the project tree on the left.
-
-![Screenshot of the DampedPendulum model in OMEdit V1.12.0](doc/damped_pendulum_in_OMEdit.png)
-
-*   Navigate to Tools -> Options -> FMI and ensure that `Version=2.0`, `Type=Co-Simulation` and `Platforms=Dynamic` is selected.
-*   Then click FMI -> Export FMU.
-*   The path of the resulting FMU file is shown in the message browser at the bottom of the window, typically `/tmp/OpenModelica_[user]/OMEdit/DampedPendulum.fmu`.
-
-Now, you are prepared for simulating the FMU using the fmi_adapter package.
-
-*   Use the generic launch file of the package
-    `ros2 launch fmi_adapter fmi_adapter_node.launch.py fmu_path:=/tmp/OpenModelica_[user]/OMEdit/DampedPendulum.fmu`
-
-*   You may print the pendulum's angle to the console by
-    `ros2 topic echo /revolute1_angle`
-
-Please see the [README.md of the fmi_adapter package](../fmi_adapter/README.md) for how to load and run an FMU inside an application-specific ROS node or library.
+The software is not ready for production use. It has neither been developed nor tested for a specific use case. However, the license conditions of the applicable Open Source licenses allow you to adapt the software to your needs. Before using it in a safety relevant setting, make sure that the software fulfills your requirements and adjust it according to any applicable safety standards (e.g. ISO 26262).
 
 
-**Note on bug with mmc_mk_modelica_array in OpenModelica 1.12.0:** If fmi_adapter crashes with the error message `undefined symbol: mmc_mk_modelica_array`, please patch the files
+## Requirements, how to build, test, install, use, etc.
 
-*   /usr/include/omc/c/meta/meta_modelica.h
-*   /usr/include/omc/c/meta/meta_modelica_data.h
+Clone the repository into a ROS workspace and build it using [colcon](https://colcon.readthedocs.io/).
 
-according to [https://github.com/OpenModelica/OMCompiler/pull/2397/files](https://github.com/OpenModelica/OMCompiler/pull/2397/files) and export the FMU again. Details on this bug are given in [https://trac.openmodelica.org/OpenModelica/ticket/4899](https://trac.openmodelica.org/OpenModelica/ticket/4899).
+
+## License
+
+fmi_adapter_ros2 is open-sourced under the Apache-2.0 license. See the [LICENSE](LICENSE) file for details.
+
+For a list of other open source components included in fmi_adapter_ros2, see the file [3rd-party-licenses.txt](3rd-party-licenses.txt).
+
+
+## Quality assurance
+
+The colcon_test tool is used for quality assurances, which includes cpplint, uncrustify, flake8, xmllint and various other tools.
+
+Unit tests based on [gtest](https://github.com/google/googletest) are located in the [fmi_adapter/test](fmi_adapter/test) folder. The unit tests use an FMU created with the [FMU SDK](https://www.qtronic.de/en/fmusdk.html) by QTronic GmbH, cf. [3rd-party-licenses.txt](3rd-party-licenses.txt).
+
+
+## Known issues/limitations
+
+Please notice the following issues/limitations:
+
+*   fmi_adapter only supports FMUs according to the FMI 2.0 standard.
+*   fmi_adapter treats all inputs, outputs and parameters of a given FMU as floating-point values (ROS message std_msgs::msg::Float64, C++ type double, FMI type fmi2fmi2_real_t).

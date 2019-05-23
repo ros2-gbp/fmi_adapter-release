@@ -1,5 +1,7 @@
 # The fmi_adapter_ros2 repository
 
+[![Build Status](http://build.ros2.org/job/Cdev__fmi_adapter_ros2__ubuntu_bionic_amd64/badge/icon)](http://build.ros2.org/job/Cdev__fmi_adapter_ros2__ubuntu_bionic_amd64/)
+
 This repository provides the fmi_adapter package for wrapping *functional mockup units (FMUs)* for co-simulation of physical models into ROS 2 nodes, i.e. for the version ROS 2. The original implementation for the first generation of ROS can be found at [github.com/boschresearch/fmi_adapter](https://github.com/boschresearch/fmi_adapter).
 
 
@@ -36,7 +38,7 @@ For a list of other open source components included in fmi_adapter_ros2, see the
 
 The colcon_test tool is used for quality assurances, which includes cpplint, uncrustify, flake8, xmllint and various other tools.
 
-Unit tests based on [gtest](https://github.com/google/googletest) are located in the [fmi_adapter/test](fmi_adapter/test) folder. The unit tests use an FMU created with the [FMU SDK](https://www.qtronic.de/en/fmusdk.html) by QTronic GmbH, cf. [3rd-party-licenses.txt](3rd-party-licenses.txt).
+Unit tests based on [gtest](https://github.com/google/googletest) are located in the [fmi_adapter/test](fmi_adapter/test) folder. The unit tests use an FMU created with the [FMU SDK](https://www.qtronic.de/en/fmu-sdk/) by QTronic GmbH, cf. [3rd-party-licenses.txt](3rd-party-licenses.txt).
 
 
 ## Known issues/limitations

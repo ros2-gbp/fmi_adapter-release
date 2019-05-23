@@ -2,6 +2,10 @@
 Changelog for package fmi_adapter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.4 (2019-05-23)
+------------------
+* Fixed link to FMU-SDK.
+
 0.1.3 (2019-02-01)
 ------------------
 * Fixed install target location of shared library.

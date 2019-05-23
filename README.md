@@ -1,3 +1,28 @@
+## fmi_adapter_ros2 (crystal) - 0.1.4-1
+
+The packages in the `fmi_adapter_ros2` repository were released into the `crystal` distro by running `/usr/bin/bloom-release --rosdistro crystal --track crystal fmi_adapter_ros2 --edit` on `Thu, 23 May 2019 13:59:52 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter_ros2`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter_ros2.git
+- release repository: https://github.com/boschresearch/fmi_adapter_ros2-release.git
+- rosdistro version: `0.1.3-0`
+- old version: `0.1.3-0`
+- new version: `0.1.4-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.12`
+- rosdep version: `0.15.2`
+- rosdistro version: `0.7.4`
+- vcstools version: `0.1.40`
+
+
 ## fmi_adapter_ros2 (crystal) - 0.1.3-0
 
 The packages in the `fmi_adapter_ros2` repository were released into the `crystal` distro by running `/usr/bin/bloom-release --rosdistro crystal --track crystal fmi_adapter_ros2` on `Fri, 01 Feb 2019 14:32:10 -0000`

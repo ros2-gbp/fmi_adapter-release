@@ -1,3 +1,28 @@
+## fmi_adapter_ros2 (dashing) - 0.1.5-1
+
+The packages in the `fmi_adapter_ros2` repository were released into the `dashing` distro by running `/usr/bin/bloom-release --rosdistro dashing --track dashing fmi_adapter_ros2 --edit` on `Fri, 24 May 2019 08:32:59 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter_ros2`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter_ros2.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.1.5-1`
+
+Versions of tools used:
+
+- bloom version: `0.8.0`
+- catkin_pkg version: `0.4.12`
+- rosdep version: `0.15.2`
+- rosdistro version: `0.7.4`
+- vcstools version: `0.1.40`
+
+
 ## fmi_adapter_ros2 (crystal) - 0.1.4-1
 
 The packages in the `fmi_adapter_ros2` repository were released into the `crystal` distro by running `/usr/bin/bloom-release --rosdistro crystal --track crystal fmi_adapter_ros2 --edit` on `Thu, 23 May 2019 13:59:52 -0000`

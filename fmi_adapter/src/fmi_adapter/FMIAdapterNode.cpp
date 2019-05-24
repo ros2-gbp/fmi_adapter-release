@@ -22,17 +22,25 @@
 #include <memory>
 #include <string>
 
+#include <rcl_interfaces/msg/parameter_descriptor.hpp>
 #include <rclcpp/rclcpp.hpp>
+#include <rclcpp/parameter_value.hpp>
+#include <rclcpp_components/register_node_macro.hpp>
 
 #include "fmi_adapter/FMIAdapter.hpp"
 
 namespace fmi_adapter
 {
 
-FMIAdapterNode::FMIAdapterNode()
-: LifecycleNode("fmi_adapter_node")
+FMIAdapterNode::FMIAdapterNode(const rclcpp::NodeOptions & options)
+: LifecycleNode("fmi_adapter_node", options)
 {
-  // Nothing to do.
+  get_node_parameters_interface()->declare_parameter("fmu_path", rclcpp::ParameterValue(
+      ""), rcl_interfaces::msg::ParameterDescriptor());
+  get_node_parameters_interface()->declare_parameter("step_size", rclcpp::ParameterValue(
+      0.0), rcl_interfaces::msg::ParameterDescriptor());
+  get_node_parameters_interface()->declare_parameter("update_period", rclcpp::ParameterValue(
+      0.01), rcl_interfaces::msg::ParameterDescriptor());
 }
 
 rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
@@ -57,12 +65,13 @@ FMIAdapterNode::on_configure(const rclcpp_lifecycle::State &)
   for (const std::string & name : adapter_->getParameterNames()) {
     RCLCPP_DEBUG(get_logger(), "FMU has parameter '%s'", name.c_str());
   }
+  adapter_->declareROSParameters(get_node_parameters_interface());
   adapter_->initializeFromROSParameters(get_node_parameters_interface());
 
   for (const std::string & name : adapter_->getInputVariableNames()) {
     std::string rosifiedName = fmi_adapter::FMIAdapter::rosifyName(name);
     auto subscription =
-      create_subscription<std_msgs::msg::Float64>(rosifiedName, 1000,
+      create_subscription<std_msgs::msg::Float64>(rosifiedName, rclcpp::SystemDefaultsQoS(),
         [this, name](const std_msgs::msg::Float64::SharedPtr msg) {
           std::string myName = name;
           adapter_->setInputValue(myName, now(), msg->data);
@@ -72,7 +81,8 @@ FMIAdapterNode::on_configure(const rclcpp_lifecycle::State &)
 
   for (const std::string & name : adapter_->getOutputVariableNames()) {
     std::string rosifiedName = fmi_adapter::FMIAdapter::rosifyName(name);
-    publishers_[name] = create_publisher<std_msgs::msg::Float64>(rosifiedName);
+    publishers_[name] = create_publisher<std_msgs::msg::Float64>(rosifiedName,
+        rclcpp::SystemDefaultsQoS());
   }
 
   adapter_->exitInitializationMode(now());
@@ -149,3 +159,5 @@ FMIAdapterNode::on_shutdown(const rclcpp_lifecycle::State &)
 }
 
 }  // namespace fmi_adapter
+
+RCLCPP_COMPONENTS_REGISTER_NODE(fmi_adapter::FMIAdapterNode)

@@ -2,6 +2,11 @@
 Changelog for package fmi_adapter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.6 (2019-11-05)
+------------------
+* Release for ROS 2 Eloquent.
+* Changed build files for use of fmilibrary_vendor package.
+
 0.1.5 (2019-05-24)
 ------------------
 * Adapted to new Dashing features, including QoS, parameter declaration and node composition.

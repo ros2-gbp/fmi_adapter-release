@@ -1,3 +1,28 @@
+## fmi_adapter_ros2 (eloquent) - 0.1.6-1
+
+The packages in the `fmi_adapter_ros2` repository were released into the `eloquent` distro by running `/usr/bin/bloom-release --rosdistro eloquent fmi_adapter_ros2` on `Tue, 05 Nov 2019 12:14:46 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter_ros2`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter_ros2.git
+- release repository: unknown
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.1.6-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.0`
+- catkin_pkg version: `0.4.14`
+- rosdep version: `0.17.1`
+- rosdistro version: `0.7.5`
+- vcstools version: `0.1.42`
+
+
 ## fmi_adapter_ros2 (dashing) - 0.1.5-1
 
 The packages in the `fmi_adapter_ros2` repository were released into the `dashing` distro by running `/usr/bin/bloom-release --rosdistro dashing --track dashing fmi_adapter_ros2 --edit` on `Fri, 24 May 2019 08:32:59 -0000`

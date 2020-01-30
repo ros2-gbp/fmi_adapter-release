@@ -2,6 +2,16 @@
 Changelog for package fmi_adapter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.1.7 (2020-01-30)
+------------------
+* Fixed sporadic exception in case of small external steps.
+* Fixed fmuLocation argument for fmi2_import_instantiate.
+
+0.1.6 (2019-11-05)
+------------------
+* Release for ROS 2 Eloquent.
+* Changed build files for use of fmilibrary_vendor package.
+
 0.1.5 (2019-05-24)
 ------------------
 * Adapted to new Dashing features, including QoS, parameter declaration and node composition.

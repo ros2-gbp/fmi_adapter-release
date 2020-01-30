@@ -192,7 +192,7 @@ FMIAdapter::FMIAdapter(
   }
 
   const fmi2_string_t instanceName = fmi2_import_get_model_name(fmu_);
-  const fmi2_string_t fmuLocation = "";
+  const fmi2_string_t fmuLocation = nullptr;  // Indicates that FMU gets path to unzipped location.
   const fmi2_boolean_t visible = fmi2_false;
   const fmi2_real_t relativeTol = 1e-4;
   jmStatus = fmi2_import_instantiate(fmu_, instanceName, fmi2_cosimulation, fmuLocation, visible);
@@ -438,7 +438,7 @@ rclcpp::Time FMIAdapter::doStepsUntil(const rclcpp::Time & simulationTime)
   }
 
   fmi2_real_t targetFMUTime = (simulationTime - fmuTimeOffset_).seconds();
-  if (targetFMUTime < fmuTime_) {
+  if (targetFMUTime < fmuTime_ - stepSize_.seconds() / 2.0) {  // Subtract stepSize/2 for rounding.
     RCLCPP_ERROR(logger_, "Given time %f is before current simulation time %f!", targetFMUTime,
       fmuTime_);
     throw std::invalid_argument("Given time is before current simulation time!");

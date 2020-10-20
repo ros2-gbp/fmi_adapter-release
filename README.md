@@ -1,3 +1,28 @@
+## fmi_adapter_ros2 (rolling) - 0.1.8-1
+
+The packages in the `fmi_adapter_ros2` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling --track rolling fmi_adapter_ros2 --edit --override-release-repository-url https://github.com/ros2-gbp/fmi_adapter_ros2-release.git` on `Tue, 20 Oct 2020 15:36:23 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter_ros2`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter_ros2.git
+- release repository: https://github.com/boschresearch/fmi_adapter_ros2-release.git
+- rosdistro version: `null`
+- old version: `null`
+- new version: `0.1.8-1`
+
+Versions of tools used:
+
+- bloom version: `0.10.0`
+- catkin_pkg version: `0.4.20`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## fmi_adapter_ros2 (foxy) - 0.1.8-1
 
 The packages in the `fmi_adapter_ros2` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --ros-distro foxy --track foxy fmi_adapter_ros2` on `Fri, 15 May 2020 14:33:21 -0000`

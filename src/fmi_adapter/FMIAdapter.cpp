@@ -1,5 +1,5 @@
 // Copyright (c) 2019 - for information on the respective copyright owner
-// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -132,9 +132,9 @@ FMIAdapter::FMIAdapter(
 : logger_(logger), fmuPath_(fmuPath), stepSize_(stepSize), interpolateInput_(interpolateInput),
   tmpPath_(tmpPath)
 {
-  if (stepSize == rclcpp::Duration(0)) {
+  if (stepSize == internal::ZERO_DURATION) {
     // Use step-size from FMU. See end of ctor.
-  } else if (stepSize < rclcpp::Duration(0)) {
+  } else if (stepSize < internal::ZERO_DURATION) {
     throw std::invalid_argument("Step size must be positive!");
   }
   if (!helpers::canReadFromFile(fmuPath)) {
@@ -211,9 +211,9 @@ FMIAdapter::FMIAdapter(
     throw std::runtime_error("fmi2_import_enter_initialization_mode failed!");
   }
 
-  if (stepSize == rclcpp::Duration(0)) {
+  if (stepSize == internal::ZERO_DURATION) {
     stepSize_ = rclcpp::Duration(1, 0) * fmi2_import_get_default_experiment_step(fmu_);
-    if (stepSize_ <= rclcpp::Duration(0)) {
+    if (stepSize_ <= internal::ZERO_DURATION) {
       throw std::invalid_argument("Default experiment step size from FMU is not positive!");
     }
     RCLCPP_INFO(
@@ -386,7 +386,7 @@ rclcpp::Time FMIAdapter::doStep()
 
 rclcpp::Time FMIAdapter::doStep(const rclcpp::Duration & stepSize)
 {
-  if (stepSize <= rclcpp::Duration(0)) {
+  if (stepSize <= internal::ZERO_DURATION) {
     throw std::invalid_argument("Step size must be positive!");
   }
   if (inInitializationMode_) {
@@ -519,6 +519,26 @@ double FMIAdapter::getOutputValue(const std::string & variableName) const
 }
 
 
+double FMIAdapter::getValue(fmi2_import_variable_t * variable) const
+{
+  fmi2_value_reference_t valueReference = fmi2_import_get_variable_vr(variable);
+  fmi2_real_t value;
+  fmi2_import_get_real(fmu_, &valueReference, 1, &value);
+  return value;
+}
+
+
+double FMIAdapter::getValue(const std::string & variableName) const
+{
+  fmi2_import_variable_t * variable = fmi2_import_get_variable_by_name(fmu_, variableName.c_str());
+  if (variable == nullptr) {
+    throw std::invalid_argument("Unknown variable name!");
+  }
+
+  return getValue(variable);
+}
+
+
 void FMIAdapter::setInitialValue(fmi2_import_variable_t * variable, double value)
 {
   if (!inInitializationMode_) {
@@ -559,6 +579,7 @@ void FMIAdapter::declareROSParameters(
       rcl_interfaces::msg::ParameterDescriptor());
   }
 }
+
 
 void FMIAdapter::initializeFromROSParameters(
   rclcpp::node_interfaces::NodeParametersInterface::SharedPtr nodeInterface)

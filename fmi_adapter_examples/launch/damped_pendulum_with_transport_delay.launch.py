@@ -1,5 +1,5 @@
 # Copyright (c) 2019 - for information on the respective copyright owner
-# see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+# see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,9 +33,9 @@ def generate_launch_description():
 
     delay_node = launch_ros.actions.LifecycleNode(
         package='fmi_adapter',
-        node_executable='fmi_adapter_node',
-        node_name='transport_delay',
-        node_namespace='example',
+        executable='fmi_adapter_node',
+        name='transport_delay',
+        namespace='example',
         parameters=[{
             'fmu_path': delay_fmu_path,
             'd': 2.33}  # Set transport delay to 2.33s.
@@ -60,9 +60,9 @@ def generate_launch_description():
 
     pendulum_node = launch_ros.actions.LifecycleNode(
         package='fmi_adapter',
-        node_executable='fmi_adapter_node',
-        node_name='damped_pendulum',
-        node_namespace='example',
+        executable='fmi_adapter_node',
+        name='damped_pendulum',
+        namespace='example',
         parameters=[{
             'fmu_path': pendulum_fmu_path,
             'l': 25.0,  # Set pendulum length to 25m.

@@ -2,6 +2,18 @@
 Changelog for package fmi_adapter
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.0 (2021-03-24)
+------------------
+* Adapted launch files to API changes.
+
+2.0.0 (2021-03-24)
+------------------
+* Added function 'getValue' to return value of any given variable name
+  Co-authored-by: Sebastian Zarnack <sebastian.zarnack@eas.iis.fraunhofer.de>
+* Improved readability of unit tests by chrono literals.
+* Replaced use of deprecated Duration ctor.
+* Added virtual to lifecycle callbacks, as in interface.
+
 0.1.8 (2020-05-14)
 ------------------
 * Prepared for Foxy release.

@@ -1,5 +1,5 @@
 // Copyright (c) 2019 - for information on the respective copyright owner
-// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -17,6 +17,7 @@
 #define FMI_ADAPTER__FMIADAPTER_HPP_
 
 #include <cassert>
+#include <chrono>
 #include <map>
 #include <string>
 #include <utility>
@@ -34,6 +35,11 @@ struct jm_callbacks;
 namespace fmi_adapter
 {
 
+namespace internal
+{
+const rclcpp::Duration ZERO_DURATION{std::chrono::nanoseconds(0)};
+}  // namespace internal
+
 /// An instance of this class wraps a FMU and allows to simulate it using the ROS time notion and
 /// standard C++ types. In the background, the FMI Library (a BSD-licensed C library) is used for
 /// interacting with the FMU. This class also provides concenvience functions to read parameters
@@ -45,7 +51,7 @@ public:
   /// is zero, the default experiment step-size given in the FMU is used.
   explicit FMIAdapter(
     rclcpp::Logger logger, const std::string & fmuPath,
-    rclcpp::Duration stepSize = rclcpp::Duration(0),
+    rclcpp::Duration stepSize = internal::ZERO_DURATION,
     bool interpolateInput = true, const std::string & tmpPath = "");
 
   RCLCPP_DISABLE_COPY(FMIAdapter)
@@ -134,6 +140,12 @@ public:
   /// Returns the current value of the output variable with the given name.
   double getOutputValue(const std::string & variableName) const;
 
+  /// Returns the current value of the given variable
+  double getValue(fmi2_import_variable_t * variable) const;
+
+  /// Returns the current value of the variable with the given name
+  double getValue(const std::string & variableName) const;
+
   /// Sets the given value of the given variable (or parameter or alias) as initial values. This
   /// function may be called only while isInInitializationMode() = true.
   void setInitialValue(fmi2_import_variable_t * variable, double value);
@@ -169,7 +181,7 @@ private:
   /// signal (true) or as non-continuous, piecewise constant signal (false).
   bool interpolateInput_;
 
-  /// Path to folder for extracting the FMU file temporarilly.
+  /// Path to folder for extracting the FMU file temporarily.
   std::string tmpPath_;
 
   /// In case that a random folder /tmp is being used (i.e. if given tmp path is ""), clean up
@@ -180,7 +192,7 @@ private:
 
   /// Offset between the FMU's simulation time and the ROS-based simulation time for doStep*(..)
   /// and setValue(..)
-  rclcpp::Duration fmuTimeOffset_{0};
+  rclcpp::Duration fmuTimeOffset_{internal::ZERO_DURATION};
 
   /// The current FMU's simulation time. It is fmuTime_ = simulationTime_ - fmuTimeOffset_.
   double fmuTime_{0.0};

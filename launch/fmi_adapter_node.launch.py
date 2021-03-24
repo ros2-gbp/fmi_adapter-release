@@ -1,5 +1,5 @@
 # Copyright (c) 2019 - for information on the respective copyright owner
-# see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+# see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -29,8 +29,9 @@ def generate_launch_description():
 
     node = launch_ros.actions.LifecycleNode(
         package='fmi_adapter',
-        node_executable='fmi_adapter_node',
-        node_name='fmi_adapter_node',
+        executable='fmi_adapter_node',
+        name='fmi_adapter_node',
+        namespace='',
         parameters=[{'fmu_path': launch.substitutions.LaunchConfiguration('fmu_path')}],
         output='screen')
 

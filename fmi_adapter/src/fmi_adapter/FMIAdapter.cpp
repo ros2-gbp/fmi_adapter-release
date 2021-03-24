@@ -1,5 +1,5 @@
 // Copyright (c) 2019 - for information on the respective copyright owner
-// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -132,9 +132,9 @@ FMIAdapter::FMIAdapter(
 : logger_(logger), fmuPath_(fmuPath), stepSize_(stepSize), interpolateInput_(interpolateInput),
   tmpPath_(tmpPath)
 {
-  if (stepSize == rclcpp::Duration(0)) {
+  if (stepSize == internal::ZERO_DURATION) {
     // Use step-size from FMU. See end of ctor.
-  } else if (stepSize < rclcpp::Duration(0)) {
+  } else if (stepSize < internal::ZERO_DURATION) {
     throw std::invalid_argument("Step size must be positive!");
   }
   if (!helpers::canReadFromFile(fmuPath)) {
@@ -163,8 +163,8 @@ FMIAdapter::FMIAdapter(
 
   context_ = fmi_import_allocate_context(jmCallbacks_);
 
-  fmi_version_enu_t fmuVersion = fmi_import_get_fmi_version(context_,
-      fmuPath_.c_str(), tmpPath_.c_str());
+  fmi_version_enu_t fmuVersion = fmi_import_get_fmi_version(
+    context_, fmuPath_.c_str(), tmpPath_.c_str());
   if (fmuVersion != fmi_version_2_0_enu) {
     throw std::invalid_argument(
             "Could not load the FMU or the FMU does not meet the FMI 2.0 standard!");
@@ -200,8 +200,8 @@ FMIAdapter::FMIAdapter(
 
   const fmi2_real_t startTime = 0.0;
   const fmi2_real_t stopTime = -1.0;
-  fmi2_status_t fmiStatus = fmi2_import_setup_experiment(fmu_, fmi2_true, relativeTol, startTime,
-      fmi2_false, stopTime);
+  fmi2_status_t fmiStatus = fmi2_import_setup_experiment(
+    fmu_, fmi2_true, relativeTol, startTime, fmi2_false, stopTime);
   if (fmiStatus != fmi2_status_ok) {
     throw std::runtime_error("fmi2_import_setup_experiment failed!");
   }
@@ -211,12 +211,13 @@ FMIAdapter::FMIAdapter(
     throw std::runtime_error("fmi2_import_enter_initialization_mode failed!");
   }
 
-  if (stepSize == rclcpp::Duration(0)) {
+  if (stepSize == internal::ZERO_DURATION) {
     stepSize_ = rclcpp::Duration(1, 0) * fmi2_import_get_default_experiment_step(fmu_);
-    if (stepSize_ <= rclcpp::Duration(0)) {
+    if (stepSize_ <= internal::ZERO_DURATION) {
       throw std::invalid_argument("Default experiment step size from FMU is not positive!");
     }
-    RCLCPP_INFO(logger_, "No step-size argument given. Using default from FMU, which is %fs.",
+    RCLCPP_INFO(
+      logger_, "No step-size argument given. Using default from FMU, which is %fs.",
       stepSize_.seconds());
   }
 }
@@ -266,8 +267,8 @@ std::string FMIAdapter::rosifyName(const std::string & name)
 
 bool FMIAdapter::canHandleVariableCommunicationStepSize() const
 {
-  return static_cast<bool>(fmi2_import_get_capability(fmu_,
-         fmi2_cs_canHandleVariableCommunicationStepSize));
+  return static_cast<bool>(fmi2_import_get_capability(
+           fmu_, fmi2_cs_canHandleVariableCommunicationStepSize));
 }
 
 
@@ -285,24 +286,27 @@ std::vector<fmi2_import_variable_t *> FMIAdapter::getAllVariables() const
 
 std::vector<fmi2_import_variable_t *> FMIAdapter::getInputVariables() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_input);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_input);
   return helpers::getVariablesFromFMU(fmu_, filter);
 }
 
 
 std::vector<fmi2_import_variable_t *> FMIAdapter::getOutputVariables() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_output);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_output);
   return helpers::getVariablesFromFMU(fmu_, filter);
 }
 
 
 std::vector<fmi2_import_variable_t *> FMIAdapter::getParameters() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_parameter);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_parameter);
   return helpers::getVariablesFromFMU(fmu_, filter);
 }
 
@@ -315,24 +319,27 @@ std::vector<std::string> FMIAdapter::getAllVariableNames() const
 
 std::vector<std::string> FMIAdapter::getInputVariableNames() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_input);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_input);
   return helpers::getVariableNamesFromFMU(fmu_, filter);
 }
 
 
 std::vector<std::string> FMIAdapter::getOutputVariableNames() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_output);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_output);
   return helpers::getVariableNamesFromFMU(fmu_, filter);
 }
 
 
 std::vector<std::string> FMIAdapter::getParameterNames() const
 {
-  auto filter = std::bind(helpers::variableFilterByCausality, std::placeholders::_1,
-      fmi2_causality_enu_parameter);
+  auto filter = std::bind(
+    helpers::variableFilterByCausality, std::placeholders::_1,
+    fmi2_causality_enu_parameter);
   return helpers::getVariableNamesFromFMU(fmu_, filter);
 }
 
@@ -379,7 +386,7 @@ rclcpp::Time FMIAdapter::doStep()
 
 rclcpp::Time FMIAdapter::doStep(const rclcpp::Duration & stepSize)
 {
-  if (stepSize <= rclcpp::Duration(0)) {
+  if (stepSize <= internal::ZERO_DURATION) {
     throw std::invalid_argument("Step size must be positive!");
   }
   if (inInitializationMode_) {
@@ -439,8 +446,8 @@ rclcpp::Time FMIAdapter::doStepsUntil(const rclcpp::Time & simulationTime)
 
   fmi2_real_t targetFMUTime = (simulationTime - fmuTimeOffset_).seconds();
   if (targetFMUTime < fmuTime_ - stepSize_.seconds() / 2.0) {  // Subtract stepSize/2 for rounding.
-    RCLCPP_ERROR(logger_, "Given time %f is before current simulation time %f!", targetFMUTime,
-      fmuTime_);
+    RCLCPP_ERROR(
+      logger_, "Given time %f is before current simulation time %f!", targetFMUTime, fmuTime_);
     throw std::invalid_argument("Given time is before current simulation time!");
   }
 
@@ -512,6 +519,26 @@ double FMIAdapter::getOutputValue(const std::string & variableName) const
 }
 
 
+double FMIAdapter::getValue(fmi2_import_variable_t * variable) const
+{
+  fmi2_value_reference_t valueReference = fmi2_import_get_variable_vr(variable);
+  fmi2_real_t value;
+  fmi2_import_get_real(fmu_, &valueReference, 1, &value);
+  return value;
+}
+
+
+double FMIAdapter::getValue(const std::string & variableName) const
+{
+  fmi2_import_variable_t * variable = fmi2_import_get_variable_by_name(fmu_, variableName.c_str());
+  if (variable == nullptr) {
+    throw std::invalid_argument("Unknown variable name!");
+  }
+
+  return getValue(variable);
+}
+
+
 void FMIAdapter::setInitialValue(fmi2_import_variable_t * variable, double value)
 {
   if (!inInitializationMode_) {
@@ -547,10 +574,12 @@ void FMIAdapter::declareROSParameters(
   for (fmi2_import_variable_t * variable : helpers::getVariablesFromFMU(fmu_)) {
     std::string name = fmi2_import_get_variable_name(variable);
     name = rosifyName(name);
-    nodeInterface->declare_parameter(name, rclcpp::ParameterValue(),
+    nodeInterface->declare_parameter(
+      name, rclcpp::ParameterValue(),
       rcl_interfaces::msg::ParameterDescriptor());
   }
 }
+
 
 void FMIAdapter::initializeFromROSParameters(
   rclcpp::node_interfaces::NodeParametersInterface::SharedPtr nodeInterface)

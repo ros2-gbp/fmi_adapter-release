@@ -123,5 +123,5 @@ tracks:
     release_tag: :{ask}
     ros_distro: rolling
     vcs_type: git
-    vcs_uri: https://github.com/boschresearch/fmi_adapter_ros2.git
+    vcs_uri: https://github.com/boschresearch/fmi_adapter.git
     version: :{ask}

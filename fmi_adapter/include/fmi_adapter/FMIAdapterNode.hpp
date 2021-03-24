@@ -1,5 +1,5 @@
 // Copyright (c) 2019 - for information on the respective copyright owner
-// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter_ros2.
+// see the NOTICE file and/or the repository https://github.com/boschresearch/fmi_adapter.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -41,19 +41,19 @@ public:
 
   virtual ~FMIAdapterNode() = default;
 
-  rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+  virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_configure(const rclcpp_lifecycle::State &);
 
-  rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+  virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_activate(const rclcpp_lifecycle::State &);
 
-  rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+  virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_deactivate(const rclcpp_lifecycle::State &);
 
-  rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+  virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_cleanup(const rclcpp_lifecycle::State &);
 
-  rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
+  virtual rclcpp_lifecycle::node_interfaces::LifecycleNodeInterface::CallbackReturn
   on_shutdown(const rclcpp_lifecycle::State &);
 
 private:

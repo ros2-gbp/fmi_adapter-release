@@ -2,6 +2,13 @@
 Changelog for package fmi_adapter_examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.0.0 (2021-03-24)
+------------------
+
+0.1.8 (2020-05-14)
+------------------
+* Prepared for Foxy release.
+
 0.1.7 (2020-01-30)
 ------------------
 * Updated instructions for FMU export from OpenModelica.

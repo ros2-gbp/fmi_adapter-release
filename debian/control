@@ -1,0 +1,12 @@
+Source: ros-galactic-fmi-adapter
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-galactic-ament-cmake, ros-galactic-ament-cmake-gmock, ros-galactic-ament-cmake-gtest, ros-galactic-ament-cmake-pytest, ros-galactic-ament-lint-auto, ros-galactic-ament-lint-common, ros-galactic-fmilibrary-vendor, ros-galactic-launch-testing, ros-galactic-rcl-interfaces, ros-galactic-rclcpp, ros-galactic-rclcpp-components, ros-galactic-rclcpp-lifecycle, ros-galactic-rcutils, ros-galactic-std-msgs, ros-galactic-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-galactic-fmi-adapter
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-galactic-launch, ros-galactic-launch-ros, ros-galactic-rcl-interfaces, ros-galactic-rclcpp, ros-galactic-rclcpp-components, ros-galactic-rclcpp-lifecycle, ros-galactic-std-msgs, ros-galactic-ros-workspace
+Description: Wraps FMUs for co-simulation

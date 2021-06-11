@@ -1,0 +1,12 @@
+Source: ros-galactic-fmi-adapter-examples
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-galactic-ament-cmake, ros-galactic-fmi-adapter, ros-galactic-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-galactic-fmi-adapter-examples
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-galactic-fmi-adapter, ros-galactic-launch, ros-galactic-launch-ros, ros-galactic-ros-workspace
+Description: Provides small examples for use of the fmi_adapter package

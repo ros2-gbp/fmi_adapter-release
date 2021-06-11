@@ -2,6 +2,9 @@
 Changelog for package fmi_adapter_examples
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+2.1.1 (2021-06-11)
+------------------
+
 2.1.0 (2021-03-24)
 ------------------
 * Adapted launch files to API changes.

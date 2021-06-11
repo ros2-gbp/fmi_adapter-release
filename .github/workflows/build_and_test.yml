@@ -1,4 +1,4 @@
-name: "Build action: Foxy + Rolling"
+name: "Build action: Foxy, Galactic, Rolling"
 
 on:
   push:
@@ -17,13 +17,13 @@ jobs:
       matrix:
         # os: [ ubuntu-20.04, windows-latest, macOS-latest ]
         os: [ ubuntu-20.04 ]
-        ros_distribution: [ foxy, rolling ]
+        ros_distribution: [ foxy, galactic, rolling ]
     steps:
     - uses: actions/checkout@v2
-    - uses: ros-tooling/setup-ros@0.0.26
+    - uses: ros-tooling/setup-ros@v0.2
       with:
         required-ros-distributions: ${{ matrix.ros_distribution }}
-    - uses : ros-tooling/action-ros-ci@0.1.0
+    - uses : ros-tooling/action-ros-ci@v0.2
       with:
         package-name: fmi_adapter
         vcs-repo-file-url: dependencies.repos

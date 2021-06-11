@@ -1,11 +1,11 @@
-# The fmi_adapter repository
-
 [![License](https://img.shields.io/badge/License-Apache%202-blue.svg)](LICENSE)
-[![Build status](http://build.ros2.org/job/Ddev__fmi_adapter__ubuntu_bionic_amd64/badge/icon?subject=Build%20farm%3A%20Dashing)](http://build.ros2.org/job/Ddev__fmi_adapter__ubuntu_bionic_amd64/)
 [![Build status](http://build.ros2.org/job/Fdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Foxy)](http://build.ros2.org/job/Fdev__fmi_adapter__ubuntu_focal_amd64/)
+[![Build status](http://build.ros2.org/job/Gdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Galactic)](http://build.ros2.org/job/Gdev__fmi_adapter__ubuntu_focal_amd64/)
 [![Build status](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Rolling)](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_focal_amd64/)
-[![Build status](https://github.com/boschresearch/fmi_adapter/workflows/Build%20action%3A%20Foxy%20%2B%20Rolling/badge.svg)](https://github.com/boschresearch/fmi_adapter/actions)
+[![Build status](https://github.com/boschresearch/fmi_adapter/workflows/Build%20action%3A%20Foxy%2C%20Galactic%2C%20Rolling/badge.svg)](https://github.com/boschresearch/fmi_adapter/actions)
 [![Code coverage](https://codecov.io/gh/boschresearch/fmi_adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/boschresearch/fmi_adapter)
+
+# The fmi_adapter repository
 
 This repository provides the fmi_adapter package for wrapping *functional mockup units (FMUs)* for co-simulation of physical models into ROS 2 nodes, i.e. for the version ROS 2. The implementation for the first generation of ROS can be found in the [melodic_and_noetic branch](https://github.com/boschresearch/fmi_adapter/tree/melodic_and_noetic).
 
@@ -52,3 +52,23 @@ Please notice the following issues/limitations:
 
 *   fmi_adapter only supports FMUs according to the FMI 2.0 standard.
 *   fmi_adapter treats all inputs, outputs and parameters of a given FMU as floating-point values (ROS message std_msgs::msg::Float64, C++ type double, FMI type fmi2fmi2_real_t).
+
+
+## Papers
+
+If you want to cite this repository/package, please cite the following book chapter ([PDF available at Springer Link](https://doi.org/10.1007/978-3-030-45956-7_7)) instead:
+
+Ralph Lange, Silvio Traversaro, Oliver Lenord, and Christian Bertsch: Integrating the Functional Mock-Up Interface with ROS and Gazebo. In: _Anis Koubaa (ed.) Robot Operating System (ROS): The Complete Reference (Volume 5)_, Springer, pp. 187–231, 2021.
+
+```bibtex
+@INBOOK{Lange_et_al_2021_Integrating_the_FMI_with_ROS_and_Gazebo,
+  author = {Ralph Lange and Silvio Traversaro and Oliver Lenord and Christian Bertsch},
+  title = {Integrating the Functional Mock-Up Interface with ROS and Gazebo},
+  editor = {Anis Koubaa},
+  booktitle = {Robot Operating System (ROS): The Complete Reference (Volume 5)},
+  year = {2021},
+  publisher = {Springer},
+  pages = {187--231},
+  doi = {10.1007/978-3-030-45956-7_7}
+}
+```

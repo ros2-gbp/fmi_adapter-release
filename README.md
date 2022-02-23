@@ -1,3 +1,28 @@
+## fmi_adapter (rolling) - 2.1.1-2
+
+The packages in the `fmi_adapter` repository were released into the `rolling` distro by running `/home/steven/osrf/bloom/.direnv/python-3.10.2/bin/bloom-release -r rolling fmi_adapter` on `Wed, 23 Feb 2022 21:40:49 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter.git
+- release repository: https://github.com/ros2-gbp/fmi_adapter-release.git
+- rosdistro version: `null`
+- old version: `2.1.1-1`
+- new version: `2.1.1-2`
+
+Versions of tools used:
+
+- bloom version: `0.10.7`
+- catkin_pkg version: `0.4.24`
+- rosdep version: `0.21.0`
+- rosdistro version: `0.8.3`
+- vcstools version: `0.1.42`
+
+
 ## fmi_adapter (foxy) - 2.1.1-1
 
 The packages in the `fmi_adapter` repository were released into the `foxy` distro by running `/usr/bin/bloom-release --ros-distro foxy --track foxy fmi_adapter` on `Fri, 11 Jun 2021 09:48:56 -0000`

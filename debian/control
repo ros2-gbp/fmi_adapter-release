@@ -1,0 +1,12 @@
+Source: ros-rolling-fmi-adapter
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-rolling-ament-cmake, ros-rolling-ament-cmake-gmock, ros-rolling-ament-cmake-gtest, ros-rolling-ament-cmake-pytest, ros-rolling-ament-lint-auto, ros-rolling-ament-lint-common, ros-rolling-fmilibrary-vendor, ros-rolling-launch-testing, ros-rolling-rcl-interfaces, ros-rolling-rclcpp, ros-rolling-rclcpp-components, ros-rolling-rclcpp-lifecycle, ros-rolling-rcutils, ros-rolling-std-msgs, ros-rolling-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-rolling-fmi-adapter
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-launch, ros-rolling-launch-ros, ros-rolling-rcl-interfaces, ros-rolling-rclcpp, ros-rolling-rclcpp-components, ros-rolling-rclcpp-lifecycle, ros-rolling-std-msgs, ros-rolling-ros-workspace
+Description: Wraps FMUs for co-simulation

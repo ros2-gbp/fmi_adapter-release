@@ -1,0 +1,12 @@
+Source: ros-humble-fmi-adapter-examples
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-humble-ament-cmake, ros-humble-fmi-adapter, ros-humble-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-humble-fmi-adapter-examples
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-humble-fmi-adapter, ros-humble-launch, ros-humble-launch-ros, ros-humble-ros-workspace
+Description: Provides small examples for use of the fmi_adapter package

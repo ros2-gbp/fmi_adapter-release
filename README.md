@@ -1,9 +1,9 @@
 [![License](https://img.shields.io/badge/License-Apache%202-blue.svg)](LICENSE)
 [![Build status](http://build.ros2.org/job/Fdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Foxy)](http://build.ros2.org/job/Fdev__fmi_adapter__ubuntu_focal_amd64/)
-[![Build status](http://build.ros2.org/job/Gdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Galactic)](http://build.ros2.org/job/Gdev__fmi_adapter__ubuntu_focal_amd64/)
-[![Build status](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_focal_amd64/badge/icon?subject=Build%20farm%3A%20Rolling)](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_focal_amd64/)
-[![Build status](https://github.com/boschresearch/fmi_adapter/workflows/Build%20action%3A%20Foxy%2C%20Galactic%2C%20Rolling/badge.svg)](https://github.com/boschresearch/fmi_adapter/actions)
-[![Code coverage](https://codecov.io/gh/boschresearch/fmi_adapter/branch/master/graph/badge.svg)](https://codecov.io/gh/boschresearch/fmi_adapter)
+[![Build status](http://build.ros2.org/job/Hdev__fmi_adapter__ubuntu_jammy_amd64/badge/icon?subject=Build%20farm%3A%20Humble)](http://build.ros2.org/job/Hdev__fmi_adapter__ubuntu_jammy_amd64/)
+[![Build status](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_jammy_amd64/badge/icon?subject=Build%20farm%3A%20Rolling)](http://build.ros2.org/job/Rdev__fmi_adapter__ubuntu_jammy_amd64/)
+[![Build status](https://github.com/boschresearch/fmi_adapter/workflows/Build%20action%3A%20Foxy%2C%20Humble%2C%20Rolling/badge.svg)](https://github.com/boschresearch/fmi_adapter/actions)
+[![Code coverage](https://codecov.io/gh/boschresearch/fmi_adapter/branch/rolling/graph/badge.svg)](https://codecov.io/gh/boschresearch/fmi_adapter)
 
 # The fmi_adapter repository
 
@@ -52,6 +52,7 @@ Please notice the following issues/limitations:
 
 *   fmi_adapter only supports FMUs according to the FMI 2.0 standard.
 *   fmi_adapter treats all inputs, outputs and parameters of a given FMU as floating-point values (ROS message std_msgs::msg::Float64, C++ type double, FMI type fmi2fmi2_real_t).
+*   A possible end time specified in an FMU is not considered, i.e., the FMU is being evaluated constantly until the corresponding ROS node is shutdown.
 
 
 ## Papers

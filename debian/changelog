@@ -1,0 +1,89 @@
+ros-iron-fmi-adapter (2.1.2-2jammy) jammy; urgency=high
+
+  * Updated link to lifecycle_node.hpp.
+  * Updated include get_env.h to env.h.
+  * Contributors: Ralph Lange
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Thu, 13 Apr 2023 07:00:00 -0000
+
+ros-iron-fmi-adapter (2.1.1-2jammy) jammy; urgency=high
+
+  * Adapted to statically typed parameters introduced in Galactic.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Fri, 11 Jun 2021 07:00:00 -0000
+
+ros-iron-fmi-adapter (2.1.0-2jammy) jammy; urgency=high
+
+  * Adapted launch files to API changes.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Wed, 24 Mar 2021 07:00:00 -0000
+
+ros-iron-fmi-adapter (2.0.0-2jammy) jammy; urgency=high
+
+  * Added function 'getValue' to return value of any given variable name
+    Co-authored-by: Sebastian Zarnack <mailto:sebastian.zarnack@eas.iis.fraunhofer.de>
+  * Improved readability of unit tests by chrono literals.
+  * Replaced use of deprecated Duration ctor.
+  * Added virtual to lifecycle callbacks, as in interface.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Wed, 24 Mar 2021 07:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.8-2jammy) jammy; urgency=high
+
+  * Prepared for Foxy release.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Thu, 14 May 2020 07:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.7-2jammy) jammy; urgency=high
+
+  * Fixed sporadic exception in case of small external steps.
+  * Fixed fmuLocation argument for fmi2_import_instantiate.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Thu, 30 Jan 2020 08:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.6-2jammy) jammy; urgency=high
+
+  * Release for ROS 2 Eloquent.
+  * Changed build files for use of fmilibrary_vendor package.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Tue, 05 Nov 2019 08:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.5-2jammy) jammy; urgency=high
+
+  * Adapted to new Dashing features, including QoS, parameter declaration and node composition.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Fri, 24 May 2019 07:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.4-2jammy) jammy; urgency=high
+
+  * Fixed link to FMU-SDK.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Thu, 23 May 2019 07:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.3-2jammy) jammy; urgency=high
+
+  * Fixed install target location of shared library.
+  * Improved code snippets on use of FMIAdapter class in README.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Fri, 01 Feb 2019 08:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.2-2jammy) jammy; urgency=high
+
+  * Cleaned up dependency entries in package.xml.
+  * Added explicit target dependencies for parallel building.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Fri, 25 Jan 2019 08:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.1-2jammy) jammy; urgency=high
+
+  * Fixed missing testing and launch dependencies.
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Wed, 23 Jan 2019 08:00:00 -0000
+
+ros-iron-fmi-adapter (0.1.0-2jammy) jammy; urgency=high
+
+  * Initial version for ROS 2, ported from https://github.com/boschresearch/fmi_adapter/
+
+ -- Ralph Lange <ralph.lange@de.bosch.com>  Fri, 18 Jan 2019 08:00:00 -0000
+
+

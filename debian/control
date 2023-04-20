@@ -1,0 +1,12 @@
+Source: ros-iron-fmi-adapter
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-iron-ament-cmake, ros-iron-ament-cmake-gmock <!nocheck>, ros-iron-ament-cmake-gtest <!nocheck>, ros-iron-ament-cmake-pytest <!nocheck>, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-fmilibrary-vendor, ros-iron-launch-testing <!nocheck>, ros-iron-rcl-interfaces, ros-iron-rclcpp, ros-iron-rclcpp-components, ros-iron-rclcpp-lifecycle, ros-iron-rcutils <!nocheck>, ros-iron-std-msgs, ros-iron-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-iron-fmi-adapter
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-iron-launch, ros-iron-launch-ros, ros-iron-rcl-interfaces, ros-iron-rclcpp, ros-iron-rclcpp-components, ros-iron-rclcpp-lifecycle, ros-iron-std-msgs, ros-iron-ros-workspace
+Description: Wraps FMUs for co-simulation

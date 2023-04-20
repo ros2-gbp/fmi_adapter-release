@@ -1,0 +1,12 @@
+Source: ros-iron-fmi-adapter-examples
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-iron-ament-cmake, ros-iron-fmi-adapter, ros-iron-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-iron-fmi-adapter-examples
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-iron-fmi-adapter, ros-iron-launch, ros-iron-launch-ros, ros-iron-ros-workspace
+Description: Provides small examples for use of the fmi_adapter package

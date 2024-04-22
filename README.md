@@ -1,3 +1,28 @@
+## fmi_adapter (jazzy) - 2.1.2-1
+
+The packages in the `fmi_adapter` repository were released into the `jazzy` distro by running `/usr/local/google/home/marcogg/migration/bin/bloom-release fmi_adapter --rosdistro jazzy` on `Mon, 22 Apr 2024 08:15:50 -0000`
+
+These packages were released:
+- `fmi_adapter`
+- `fmi_adapter_examples`
+
+Version of package(s) in repository `fmi_adapter`:
+
+- upstream repository: https://github.com/boschresearch/fmi_adapter.git
+- release repository: https://github.com/ros2-gbp/fmi_adapter-release.git
+- rosdistro version: `null`
+- old version: `null`
+- new version: `2.1.2-1`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## fmi_adapter (rolling) - 2.1.2-2
 
 The packages in the `fmi_adapter` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --track rolling --rosdistro rolling fmi_adapter` on `Wed, 06 Mar 2024 18:23:35 -0000`

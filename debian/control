@@ -1,0 +1,12 @@
+Source: ros-jazzy-fmi-adapter-examples
+Section: misc
+Priority: optional
+Maintainer: Ralph Lange <ralph.lange@de.bosch.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jazzy-ament-cmake, ros-jazzy-fmi-adapter, ros-jazzy-ros-workspace
+Homepage: http://wiki.ros.org/fmi_adapter
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fmi-adapter-examples
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jazzy-fmi-adapter, ros-jazzy-launch, ros-jazzy-launch-ros, ros-jazzy-ros-workspace
+Description: Provides small examples for use of the fmi_adapter package

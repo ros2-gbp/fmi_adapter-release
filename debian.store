@@ -1,1 +1,1 @@
-{"base": "41b91ff", "parent": "debian/rolling/fmi_adapter", "previous": "6529611", "trim": "", "trimbase": ""}
+{"base": "299cb4f6ad1d", "parent": "debian/kilted/fmi_adapter", "previous": "b245695c6fb1", "trim": "", "trimbase": ""}
